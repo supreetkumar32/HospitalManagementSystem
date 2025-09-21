@@ -30,9 +30,11 @@ public class PatientServiceTest {
 //            System.out.println(p);
 //        }
 
-        List<BloodGroupStats> patientList=patientRepository.getBloodGroupStats();
-        for(BloodGroupStats p:patientList){
-            System.out.println(p);
-        }
+//        List<BloodGroupStats> patientList=patientRepository.getBloodGroupStats();
+//        for(BloodGroupStats p:patientList){
+//            System.out.println(p);
+//        }
+
+        int rowsAffected=patientRepository.updatePatientNameWithId("Anuj Sharma",1L);
     }
 }
