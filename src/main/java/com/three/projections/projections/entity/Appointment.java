@@ -27,10 +27,14 @@ public class Appointment {
 
     @ManyToOne // owning side
     @JoinColumn(nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private Patient patient;
 
     @ManyToOne //owning side
     @JoinColumn(nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private Doctor doctor;
 
 }

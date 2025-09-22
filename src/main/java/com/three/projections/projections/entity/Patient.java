@@ -52,7 +52,7 @@ public class Patient {
     @JoinColumn(name="patient_insurance",unique=true)//for changing teh properties(name) of the column//join column is there in owning side
     private Insurance insurance;//owning side
 
-    @OneToMany(mappedBy = "patient")//inverse side
+    @OneToMany(mappedBy = "patient",cascade=CascadeType.ALL)//inverse side
     private Set<Appointment> appointments=new HashSet<>();
 
 }
