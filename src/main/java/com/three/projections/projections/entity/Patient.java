@@ -9,7 +9,11 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 public class Patient {
 
@@ -31,62 +35,6 @@ public class Patient {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public BloodGroupType getBloodGroup() {
-        return bloodGroup;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setBloodGroup(BloodGroupType bloodGroup) {
-        this.bloodGroup = bloodGroup;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     @Override
     public String toString() {
         return "Patient{" +
@@ -99,4 +47,12 @@ public class Patient {
                 ", createdAt=" + createdAt +
                 '}';
     }
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="patient_insurance",unique=true)//for changing teh properties(name) of the column//join column is there in owning side
+    private Insurance insurance;//owning side
+
+    @OneToMany(mappedBy = "patient")//inverse side
+    private Set<Appointment> appointments=new HashSet<>();
+
 }
